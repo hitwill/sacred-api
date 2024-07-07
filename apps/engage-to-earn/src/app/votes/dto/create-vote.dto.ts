@@ -10,7 +10,7 @@ import {
 export class CreateVoteDto {
   @IsString()
   @IsNotEmpty()
-  contentHash: string;
+  contentURL: string;
 
   @IsString()
   @IsNotEmpty()
@@ -25,12 +25,12 @@ export class CreateVoteDto {
   vote: number;
 
   constructor(
-    contentHash: string,
+    contentURL: string,
     userId: string,
     userAddress: string,
     vote: number
   ) {
-    this.contentHash = contentHash;
+    this.contentURL = contentURL;
     this.userId = userId;
     this.userAddress = userAddress;
     this.vote = vote;
