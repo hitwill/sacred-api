@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateVoteDto } from './dto/create-vote.dto';
 import { UpdateVoteDto } from './dto/update-vote.dto';
-import { kv } from '@vercel/kv';
 
 @Injectable()
 export class VotesService {
