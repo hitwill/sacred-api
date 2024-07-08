@@ -1,15 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { CreateRewardDto } from './dto/create-reward.dto';
 import { UpdateRewardDto } from './dto/update-reward.dto';
-import { RedisClientType } from 'redis';
+import { Schema } from '../schemas';
 import { RedisService } from '../redis/redis.service';
+import { RedisClientType } from 'redis';
+import { Repository } from 'redis-om';
 
 @Injectable()
 export class RewardsService {
   private readonly redisClient: RedisClientType;
+  rewardsRepository: Repository;
 
   constructor(private redisService: RedisService) {
-    this.redisClient = this.redisService.client;
+    this.rewardsRepository = new Repository(
+      Schema.votes,
+      this.redisService.client
+    );
   }
 
   create(createRewardDto: CreateRewardDto) {
