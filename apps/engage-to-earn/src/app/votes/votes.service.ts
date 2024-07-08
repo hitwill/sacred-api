@@ -2,8 +2,17 @@ import { Injectable } from '@nestjs/common';
 import { CreateVoteDto } from './dto/create-vote.dto';
 import { UpdateVoteDto } from './dto/update-vote.dto';
 
+import { Repository, Schema } from 'redis-om';
+import { RedisService } from '../redis/redis.service';
+import { RedisClientType } from 'redis';
+
 @Injectable()
 export class VotesService {
+  private readonly redisClient: RedisClientType;
+
+  constructor(private redisService: RedisService) {
+    this.redisClient = this.redisService.client;
+  }
   create(createVoteDto: CreateVoteDto) {
     return 'This action adds a new vote';
   }
